@@ -210,8 +210,7 @@ Scripts can be run in standard and debug mode by:
 
 ## Simple Page Object Model
 
-Simple implementation of Page Object Model can be based on _classes_ that represents and implements tested pages.
-Those calsses contains _locators_ of elements, that are used in tests, e.g. buttons, inputs etc.
+Simple implementation of Page Object Model can be based on _classes_ that represents and implements tested pages. Those calsses contains _locators_ of elements, that are used in tests, e.g. buttons, inputs etc.
 
 Directory structure:
 
