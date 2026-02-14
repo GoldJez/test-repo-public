@@ -1,5 +1,5 @@
-import { Locator, Page } from "@playwright/test";
-import { SideMenuComponent } from "../component/side-menu.component";
+import { Locator, Page } from '@playwright/test';
+import { SideMenuComponent } from '../component/side-menu.component';
 
 export class PaymentsPage {
   transferReceiverInput: Locator;
@@ -11,14 +11,14 @@ export class PaymentsPage {
   sideMenuComponent: SideMenuComponent;
 
   constructor(private page: Page) {
-    this.transferReceiverInput = page.getByTestId("transfer_receiver");
-    this.transferAccountInput = page.getByTestId("form_account_to");
-    this.transferAmountInput = page.getByTestId("form_amount");
-    this.executeTransferButton = page.getByRole("button", {
-      name: "wykonaj przelew",
+    this.transferReceiverInput = page.getByTestId('transfer_receiver');
+    this.transferAccountInput = page.getByTestId('form_account_to');
+    this.transferAmountInput = page.getByTestId('form_amount');
+    this.executeTransferButton = page.getByRole('button', {
+      name: 'wykonaj przelew',
     });
-    this.closeMessageButton = page.getByTestId("close-button");
-    this.messageText = page.locator("#show_messages");
+    this.closeMessageButton = page.getByTestId('close-button');
+    this.messageText = page.locator('#show_messages');
     this.sideMenuComponent = new SideMenuComponent(page);
   }
 

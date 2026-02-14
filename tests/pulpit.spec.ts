@@ -1,16 +1,16 @@
-import { test, expect } from "@playwright/test";
-import { loginData } from "../test-data/login.data";
-import { LoginPage } from "../pages/login.page";
-import { PulpitPage } from "../pages/pulpit.page";
+import { test, expect } from '@playwright/test';
+import { loginData } from '../test-data/login.data';
+import { LoginPage } from '../pages/login.page';
+import { PulpitPage } from '../pages/pulpit.page';
 
-test.describe("Pulpit tests", () => {
+test.describe('Pulpit tests', () => {
   let pulpitPage: PulpitPage;
 
   test.beforeEach(async ({ page }) => {
     const userId = loginData.userId;
     const userPassword = loginData.userPassword;
 
-    await page.goto("/");
+    await page.goto('/');
     const loginPage = new LoginPage(page);
     await loginPage.login(userId, userPassword);
 
@@ -18,20 +18,20 @@ test.describe("Pulpit tests", () => {
   });
 
   test(
-    "quick payment with correct data",
+    'quick payment with correct data',
     {
-      tag: ["@pulpit", "@integration"],
+      tag: ['@pulpit', '@integration'],
       annotation: {
-        type: "documentation",
-        description: "https://jaktestowac.pl/course/playwright-wprowadzenie/",
+        type: 'documentation',
+        description: 'https://jaktestowac.pl/course/playwright-wprowadzenie/',
       },
     },
     async ({ page }) => {
       // Arrange
-      const receiverId = "2";
-      const transferAmount = "150";
-      const transferTitle = "pizza";
-      const expectedTransferReceiver = "Chuck Demobankowy";
+      const receiverId = '2';
+      const transferAmount = '150';
+      const transferTitle = 'pizza';
+      const expectedTransferReceiver = 'Chuck Demobankowy';
 
       // Act
       await pulpitPage.executeQuickPayment(
@@ -48,12 +48,12 @@ test.describe("Pulpit tests", () => {
   );
 
   test(
-    "successful mobile top-up",
-    { tag: ["@pulpit", "@integration"] },
+    'successful mobile top-up',
+    { tag: ['@pulpit', '@integration'] },
     async ({ page }) => {
       // Arrange
-      const topUpReceiver = "500 xxx xxx";
-      const topUpAmount = "50";
+      const topUpReceiver = '500 xxx xxx';
+      const topUpAmount = '50';
       const expectedMessage = `Doładowanie wykonane! ${topUpAmount},00PLN na numer ${topUpReceiver}`;
 
       // Act
@@ -65,12 +65,12 @@ test.describe("Pulpit tests", () => {
   );
 
   test(
-    "correct balance after successful mobile top-up",
-    { tag: ["@pulpit", "@integration"] },
+    'correct balance after successful mobile top-up',
+    { tag: ['@pulpit', '@integration'] },
     async ({ page }) => {
       // Arrange
-      const topUpReceiver = "500 xxx xxx";
-      const topUpAmount = "50";
+      const topUpReceiver = '500 xxx xxx';
+      const topUpAmount = '50';
       const initialBalance = await pulpitPage.moneyValueText.innerText();
       const expectedBalance = Number(initialBalance) - Number(topUpAmount);
 
