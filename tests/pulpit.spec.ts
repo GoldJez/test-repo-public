@@ -17,8 +17,8 @@ test.describe('Pulpit tests', () => {
     pulpitPage = new PulpitPage(page);
   });
 
-  test(
-    'quick payment with correct data',
+  // prettier-ignore
+  test('quick payment with correct data',
     {
       tag: ['@pulpit', '@integration'],
       annotation: {
@@ -47,8 +47,8 @@ test.describe('Pulpit tests', () => {
     },
   );
 
-  test(
-    'successful mobile top-up',
+  // prettier-ignore
+  test('successful mobile top-up',
     { tag: ['@pulpit', '@integration'] },
     async ({ page }) => {
       // Arrange
@@ -64,8 +64,8 @@ test.describe('Pulpit tests', () => {
     },
   );
 
-  test(
-    'correct balance after successful mobile top-up',
+  // prettier-ignore
+  test('correct balance after successful mobile top-up',
     { tag: ['@pulpit', '@integration'] },
     async ({ page }) => {
       // Arrange

@@ -16,8 +16,8 @@ test.describe('Payment tests', () => {
     await paymentsPage.sideMenuComponent.paymentLink.click();
   });
 
-  test(
-    'simple payment',
+  // prettier-ignore
+  test('simple payment',
     { tag: ['@payment', '@integration'] },
     async ({ page }) => {
       // Arrange

@@ -10,8 +10,8 @@ test.describe('User login to Demobank', () => {
     loginPage = new LoginPage(page);
   });
 
-  test(
-    'successful login with correct credentials',
+  // prettier-ignore
+  test('successful login with correct credentials',
     {
       tag: ['@login', '@smoke'],
       annotation: {
@@ -34,8 +34,8 @@ test.describe('User login to Demobank', () => {
     },
   );
 
-  test(
-    'unsuccessful login with too short username',
+  // prettier-ignore
+  test('unsuccessful login with too short username',
     { tag: ['@login', '@unhappyPath'] },
     async ({ page }) => {
       // Arrange
@@ -53,8 +53,8 @@ test.describe('User login to Demobank', () => {
     },
   );
 
-  test(
-    'unsuccessful login with too short password',
+  // prettier-ignore
+  test('unsuccessful login with too short password',
     { tag: ['@login', '@unhappyPath'] },
     async ({ page }) => {
       // Arrange
