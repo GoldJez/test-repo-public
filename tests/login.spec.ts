@@ -1,58 +1,76 @@
-import { test, expect } from '@playwright/test';
-import { loginData } from '../test-data/login.data';
-import { LoginPage } from '../pages/login.page';
+import { test, expect } from "@playwright/test";
+import { loginData } from "../test-data/login.data";
+import { LoginPage } from "../pages/login.page";
 
-test.describe('User login to Demobank', () => {
-  let loginPage: LoginPage
+test.describe("User login to Demobank", () => {
+  let loginPage: LoginPage;
 
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto("/");
     loginPage = new LoginPage(page);
   });
 
-  test('successful login with correct credentials', {tag: ['@login','@smoke'], annotation: {type: 'Jira link', description: 'https://playwright.info/'}}, async ({ page }) => {
-    // Arrange
-    
-    const userId = loginData.userId;
-    const userPassword = loginData.userPassword;
-    const expectedUserName = loginData.expectedUserName;
+  test(
+    "successful login with correct credentials",
+    {
+      tag: ["@login", "@smoke"],
+      annotation: {
+        type: "Jira link",
+        description: "https://playwright.info/",
+      },
+    },
+    async ({ page }) => {
+      // Arrange
 
-    // Act
-    await loginPage.login(userId, userPassword);
+      const userId = loginData.userId;
+      const userPassword = loginData.userPassword;
+      const expectedUserName = loginData.expectedUserName;
 
-    // Assert
-    await expect(page.getByTestId('user-name')).toHaveText(expectedUserName);
-  });
+      // Act
+      await loginPage.login(userId, userPassword);
 
-  test('unsuccessful login with too short username', {tag: ['@login', '@unhappyPath']}, async ({ page }) => {
-    // Arrange
-    const incorrectUserId = 'tester';
-    const expectedErrorMessage = 'identyfikator ma min. 8 znaków';
+      // Assert
+      await expect(page.getByTestId("user-name")).toHaveText(expectedUserName);
+    },
+  );
 
-    // Act
-    await page.getByTestId('login-input').fill(incorrectUserId);
-    await page.getByTestId('password-input').click();
+  test(
+    "unsuccessful login with too short username",
+    { tag: ["@login", "@unhappyPath"] },
+    async ({ page }) => {
+      // Arrange
+      const incorrectUserId = "tester";
+      const expectedErrorMessage = "identyfikator ma min. 8 znaków";
 
-    // Assert
-    await expect(page.getByTestId('error-login-id')).toHaveText(
-      expectedErrorMessage
-    );
-  });
+      // Act
+      await page.getByTestId("login-input").fill(incorrectUserId);
+      await page.getByTestId("password-input").click();
 
-  test('unsuccessful login with too short password', {tag: ['@login','@unhappyPath']}, async ({ page }) => {
-    // Arrange
-    const userId = 'testerLO';
-    const incorrectPassword = '1234';
-    const expectedErrorMessage = 'hasło ma min. 8 znaków';
+      // Assert
+      await expect(page.getByTestId("error-login-id")).toHaveText(
+        expectedErrorMessage,
+      );
+    },
+  );
 
-    // Act
-    await page.getByTestId('login-input').fill(userId);
-    await page.getByTestId('password-input').fill(incorrectPassword);
-    await page.getByTestId('password-input').blur();
+  test(
+    "unsuccessful login with too short password",
+    { tag: ["@login", "@unhappyPath"] },
+    async ({ page }) => {
+      // Arrange
+      const userId = "testerLO";
+      const incorrectPassword = "1234";
+      const expectedErrorMessage = "hasło ma min. 8 znaków";
 
-    // Assert
-    await expect(page.getByTestId('error-login-password')).toHaveText(
-      expectedErrorMessage
-    );
-  });
+      // Act
+      await page.getByTestId("login-input").fill(userId);
+      await page.getByTestId("password-input").fill(incorrectPassword);
+      await page.getByTestId("password-input").blur();
+
+      // Assert
+      await expect(page.getByTestId("error-login-password")).toHaveText(
+        expectedErrorMessage,
+      );
+    },
+  );
 });
