@@ -10,7 +10,7 @@ test.describe('User login to Demobank', () => {
     loginPage = new LoginPage(page);
   });
 
-  test('successful login with correct credentials', async ({ page }) => {
+  test('successful login with correct credentials', {tag: ['@login','@smoke'], annotation: {type: 'Jira link', description: 'https://playwright.info/'}}, async ({ page }) => {
     // Arrange
     
     const userId = loginData.userId;
@@ -24,7 +24,7 @@ test.describe('User login to Demobank', () => {
     await expect(page.getByTestId('user-name')).toHaveText(expectedUserName);
   });
 
-  test('unsuccessful login with too short username', async ({ page }) => {
+  test('unsuccessful login with too short username', {tag: ['@login', '@unhappyPath']}, async ({ page }) => {
     // Arrange
     const incorrectUserId = 'tester';
     const expectedErrorMessage = 'identyfikator ma min. 8 znaków';
@@ -39,7 +39,7 @@ test.describe('User login to Demobank', () => {
     );
   });
 
-  test('unsuccessful login with too short password', async ({ page }) => {
+  test('unsuccessful login with too short password', {tag: ['@login','@unhappyPath']}, async ({ page }) => {
     // Arrange
     const userId = 'testerLO';
     const incorrectPassword = '1234';

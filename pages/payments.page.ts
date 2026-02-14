@@ -1,5 +1,5 @@
 import { Locator, Page } from "@playwright/test";
-import { SideMenuComponent } from "../components/side-menu.component";
+import { SideMenuComponent } from "../component/side-menu.component";
 
 export class PaymentsPage {
     transferReceiverInput: Locator;
